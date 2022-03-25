@@ -1,58 +1,58 @@
 # FastApi + Vue/React/Svelte + MongoDB
 
-A simple boilerplate for FastAPI single page applications. 
+https://github.com/coding-to-music/fastapi-mongo-caddy2-svelte
+
+fastapi-mongo-caddy2-svelte
+
+By alincmt ClimenteA https://github.com/ClimenteA
+
+https://github.com/ClimenteA/fastapi-mongo-caddy2-vue-react-svelte
+
+A simple boilerplate for FastAPI single page applications.
 
 There are 2 environments available one for production with `Caddy2` as a reverse proxy and one for development.
 
 You can choose to work with docker containers or not.
 
 In the `app` folder we have the `FastAPI` code. Make sure to add all dependencies in `requirements.txt`.
-In the `ui` folder we have 3 boilerplate folders created with `vite` (Vue, React, Svelte). 
-
-
+In the `ui` folder we have 3 boilerplate folders created with `vite` (Vue, React, Svelte).
 
 # Development
 
-- CD in the `app` folder and start the `FastAPI` with  `uvicorn main:app --reload --host 0.0.0.0 --port 5000` (see the api at `localhost:5000`);
+- CD in the `app` folder and start the `FastAPI` with `uvicorn main:app --reload --host 0.0.0.0 --port 5000` (see the api at `localhost:5000`);
 - CD in the `ui/your-prefered-framework` folder and start the ui with `npm run dev` (see the frontend at `localhost:3000`);
 
 Notice that in `vite.config.js` the host and port is modified:
+
 ```js
-import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { defineConfig } from "vite";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [svelte()],
   server: {
-    host: '0.0.0.0', 
-    port: 3000
-  }
-})
-
+    host: "0.0.0.0",
+    port: 3000,
+  },
+});
 ```
 
-
-You can change the folder structure as you want. 
+You can change the folder structure as you want.
 This setup is focused on making simple, easy to modify production and development environment.
-
 
 # Production
 
 Update `Caddyfile` with:
+
 - a valid email(used for https);
 - a valid domain name in place of localhost;
 - update `.env` file as needed (you may need to change `UI_DIST_DIR=/ui/svelte-app/dist` with your choosed frontend framework);
 - run `npm run build` to let `vite` generate the `dist` folder.
 
-
 Notice in the `docker-compose.prod.yml` that we didn't exposed any ports only `Caddy2` will handle interaction with the outside world.
 
 When the root of the domain name will be accessed, `index.html` file will be served.
-
-
-
-
 
 ## Utils
 
